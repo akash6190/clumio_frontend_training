@@ -5,8 +5,19 @@
   --default-margin: 10px;
   --input-size: 24px;
   --input-placeholder-color: rgba(0, 0, 0, 0.1);
+  --std-spacing-md: 16px;
+  --std-spacing-sm: 8px;
   --input-padding: 16px 16px 16px 60px;
-  --input-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+  --list-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  --border-color: #ededed;
+  --std-color: #4d4d4d;
+  --check-circle-size: 30px;
+
+  --white: #fff;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -16,6 +27,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background: var(--primary-bg);
+  color: var(--std-color);
 }
 
 .container {
@@ -35,11 +47,36 @@ body {
   padding: var(--input-padding);
   border: none;
   outline: none;
-  box-shadow: var(--input-box-shadow);
+  box-shadow: var(--list-box-shadow);
   width: 100%;
 }
 
 .input::placeholder {
   font-style: italic;
   color: var(--input-placeholder-color);
+}
+
+.list-container {
+  background: var(--white);
+  list-style-type: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-shadow: var(--list-box-shadow);
+}
+
+.list-container .list-item {
+  padding: var(--std-spacing-md) var(--std-spacing-sm);
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.list-item .check-circle {
+  width: var(--check-circle-size);
+  height: var(--check-circle-size);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  margin-right: var(--std-spacing-sm);
 }
