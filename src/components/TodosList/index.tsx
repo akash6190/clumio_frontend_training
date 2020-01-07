@@ -6,9 +6,18 @@ interface Props {
 }
 
 const TodosList: React.FC<Props> = ({ todos }) => {
-    return (
-        <div>Todos list</div>
-    );
+    return todos ? (
+        <ul className="list-container">
+            {
+                todos.map(({ value, completed }) => (
+                    <li className="list-item">
+                        <div className="check-circle"></div>
+                        <span>{value}</span>
+                    </li>
+                ))
+            }
+        </ul>
+    ) : null;
 };
 
 export default TodosList;
