@@ -1,9 +1,45 @@
+:root {
+  --primary-color: rgba(175, 47, 47, 0.15);
+  --primary-bg: #f5f5f5;
+  --heading-size: 100px;
+  --default-margin: 10px;
+  --input-size: 24px;
+  --input-placeholder-color: rgba(0, 0, 0, 0.1);
+  --input-padding: 16px 16px 16px 60px;
+  --input-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  background: var(--primary-bg);
+}
+
+.container {
+  width: 768px;
+  margin: auto;
+  text-align: center;
+}
+
+.heading {
+  color: var(--primary-color);
+  font-size: var(--heading-size);
+  margin: var(--default-margin);
+}
+
+.input {
+  font-size: var(--input-size);
+  padding: var(--input-padding);
+  border: none;
+  outline: none;
+  box-shadow: var(--input-box-shadow);
+  width: 100%;
+}
+
+.input::placeholder {
+  font-style: italic;
+  color: var(--input-placeholder-color);
 }
