@@ -1,8 +1,14 @@
 import React from 'react';
-import './App.css';
+
+import Input from "../../components/Input";
 
 const Index: React.FC = () => {
-  return <h1>todos</h1>;
+  return (
+      <div className="container">
+        <p className="heading">todos</p>
+        <Input />
+      </div>
+  );
 };
 
 export default Index;
