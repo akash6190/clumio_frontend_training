@@ -1,13 +1,16 @@
 import React, {ChangeEventHandler, FormEventHandler, useState} from 'react';
 
-interface Todo {
+export interface Todo {
     value: string;
     completed: boolean;
 }
 
-const Input: React.FC = () => {
+interface Props {
+    onFormSubmit: (t: Todo) => void;
+}
+
+const Input: React.FC<Props> = ({ onFormSubmit }) => {
     const [value, setValue] = useState('');
-    const [todos, setTodos] = useState<Todo[]>([]);
 
     const handleChange: ChangeEventHandler<HTMLInputElement> = e => {
         setValue(e.target.value);
@@ -15,11 +18,9 @@ const Input: React.FC = () => {
 
     const handleFormSubmit: FormEventHandler<HTMLFormElement> = e => {
         e.preventDefault();
-        setTodos([{ completed: false, value: value.trim() }]);
+        onFormSubmit({ completed: false, value: value.trim() });
         setValue('');
     };
-
-    console.log(todos);
 
     return (
         <form onSubmit={handleFormSubmit}>
