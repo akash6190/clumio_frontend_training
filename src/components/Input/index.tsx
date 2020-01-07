@@ -1,6 +1,7 @@
 import React, {ChangeEventHandler, FormEventHandler, useState} from 'react';
 
 export interface Todo {
+    id: number;
     value: string;
     completed: boolean;
 }
@@ -18,7 +19,7 @@ const Input: React.FC<Props> = ({ onFormSubmit }) => {
 
     const handleFormSubmit: FormEventHandler<HTMLFormElement> = e => {
         e.preventDefault();
-        onFormSubmit({ completed: false, value: value.trim() });
+        onFormSubmit({ id: -1, completed: false, value: value.trim() });
         setValue('');
     };
 
