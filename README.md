@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React Index](https://github.com/faceb
 
 In the project directory, you can run:
 
+### `yarn start:server`
+
+Runs a local JSON server. Persists data to `db.json`. **Run this along with `yarn start` for correct functionality.**
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
