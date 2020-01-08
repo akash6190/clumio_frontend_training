@@ -21,7 +21,7 @@ const Index: React.FC = () => {
         }
 
         setTodos(newTodos);
-    }
+    };
 
     return (
         <div className="container">

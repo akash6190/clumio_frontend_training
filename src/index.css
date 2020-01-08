@@ -72,18 +72,38 @@ body {
   text-align: left;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.list-item .section-left {
+  display: flex;
+  align-items: center;
+}
+
+.list-item .section-left > * {
+  margin-right: var(--std-spacing-sm);
 }
 
 .list-item .check-circle {
   width: var(--check-circle-size);
+  min-width: var(--check-circle-size);
   height: var(--check-circle-size);
+  min-height: var(--check-circle-size);
   border: 1px solid var(--border-color);
   border-radius: 50%;
-  margin-right: var(--std-spacing-sm);
   padding: var(--std-spacing-xs);
+  cursor: pointer;
 }
 
 .check-circle img {
   width: 100%;
   height: 100%;
+}
+
+.clear-todo {
+  cursor: pointer;
+  visibility: hidden;
+}
+.list-item:hover .clear-todo {
+  visibility: visible;
 }
