@@ -15,7 +15,7 @@ const TodosList: React.FC<Props> = ({ onClear, onComplete, todos }) => {
         <ul className="list-container">
             {
                 todos.map(todo => (
-                    <li className="list-item">
+                    <li className="list-item" key={todo.id}>
                         <div className="section-left">
                             <div className="check-circle" onClick={() => onComplete(todo)}>
                                 {

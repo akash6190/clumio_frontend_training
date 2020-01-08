@@ -1,16 +1,44 @@
-import React, {useState} from 'react';
+import axios from 'axios';
+import uuid from 'uuid/v4';
+import React, {useEffect, useState} from 'react';
 
 import Input, {Todo} from "../../components/Input";
 import TodosList from "../../components/TodosList";
 
-const Index: React.FC = () => {
+const App: React.FC = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/todos');
+                if (response.status === 200) {
+                    setTodos(response.data);
+                }
+            } catch (e) {
+                console.log(e);
+                setError(e.toString());
+            }
+        })();
+    }, []);
 
     const updateTodos = (t: Todo) => {
         if (t.value.trim() === '') {
             return;
         }
-        setTodos([...todos, { ...t, id: todos.length }]);
+        const newTodo: Todo = { ...t, id: uuid() };
+        (async () => {
+            try {
+                const response = await axios.post('http://localhost:3000/todos', newTodo);
+                if (response.status === 201) {
+                    setTodos([...todos, newTodo]);
+                }
+            } catch (e) {
+                console.log(e);
+                setError(e.toString());
+            }
+        })();
     };
 
     const updateCompleted = (t: Todo) => {
@@ -20,12 +48,37 @@ const Index: React.FC = () => {
             newTodos[index] = { ...t, completed: !t.completed };
         }
 
-        setTodos(newTodos);
+        (async () => {
+            try {
+                const response = await axios.put(
+                    `http://localhost:3000/todos/${t.id}`,
+                    { ...t, completed: !t.completed }
+                    );
+                if (response.status === 200) {
+                    setTodos(newTodos);
+                }
+            } catch (e) {
+                console.log(e);
+                setError(e.toString());
+            }
+        })();
     };
 
     const clearTodo = (t: Todo) => {
         const newTodos = todos.filter(({ id }) => id !== t.id);
         setTodos(newTodos);
+
+        (async () => {
+            try {
+                const response = await axios.delete(`http://localhost:3000/todos/${t.id}`);
+                if (response.status === 200) {
+                    setTodos(newTodos);
+                }
+            } catch (e) {
+                console.log(e);
+                setError(e.toString());
+            }
+        })();
     };
 
     return (
@@ -33,8 +86,9 @@ const Index: React.FC = () => {
             <p className="heading">todos</p>
             <Input onFormSubmit={updateTodos}  />
             <TodosList todos={todos} onComplete={updateCompleted} onClear={clearTodo} />
+            <div className="api-error">{error}</div>
         </div>
     );
 };
 
-export default Index;
+export default App;

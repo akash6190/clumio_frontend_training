@@ -104,6 +104,12 @@ body {
   cursor: pointer;
   visibility: hidden;
 }
+
 .list-item:hover .clear-todo {
   visibility: visible;
+}
+
+.api-error {
+  color: brown;
+  margin: var(--std-spacing-md) 0;
 }
