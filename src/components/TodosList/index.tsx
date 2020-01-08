@@ -7,9 +7,10 @@ import Close from '../../x.svg';
 interface Props {
     todos: Todo[];
     onComplete: (t: Todo) => void;
+    onClear: (t: Todo) => void;
 }
 
-const TodosList: React.FC<Props> = ({ onComplete, todos }) => {
+const TodosList: React.FC<Props> = ({ onClear, onComplete, todos }) => {
     return todos ? (
         <ul className="list-container">
             {
@@ -23,7 +24,7 @@ const TodosList: React.FC<Props> = ({ onComplete, todos }) => {
                             </div>
                             <span>{todo.value}</span>
                         </div>
-                        <img src={Close} alt={"Clear todo"} className="clear-todo" />
+                        <img src={Close} alt={"Clear todo"} className="clear-todo" onClick={() => onClear(todo)} />
                     </li>
                 ))
             }

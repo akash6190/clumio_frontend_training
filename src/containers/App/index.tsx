@@ -23,11 +23,16 @@ const Index: React.FC = () => {
         setTodos(newTodos);
     };
 
+    const clearTodo = (t: Todo) => {
+        const newTodos = todos.filter(({ id }) => id !== t.id);
+        setTodos(newTodos);
+    };
+
     return (
         <div className="container">
             <p className="heading">todos</p>
             <Input onFormSubmit={updateTodos}  />
-            <TodosList todos={todos} onComplete={updateCompleted} />
+            <TodosList todos={todos} onComplete={updateCompleted} onClear={clearTodo} />
         </div>
     );
 };
