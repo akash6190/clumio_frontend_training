@@ -4,8 +4,12 @@ import React, {useEffect, useState} from 'react';
 
 import Input, {Todo} from "../../components/Input";
 import TodosList from "../../components/TodosList";
+import { addTodo } from '../../store/actions';
+import { useDispatch } from 'react-redux';
+
 
 const App: React.FC = () => {
+    const dispatch = useDispatch();
     const [todos, setTodos] = useState<Todo[]>([]);
     const [error, setError] = useState(null);
 
@@ -28,6 +32,7 @@ const App: React.FC = () => {
             return;
         }
         const newTodo: Todo = { ...t, id: uuid() };
+        dispatch(addTodo({ todo: newTodo }));
         (async () => {
             try {
                 const response = await axios.post('http://localhost:3000/todos', newTodo);
@@ -85,7 +90,7 @@ const App: React.FC = () => {
         <div className="container">
             <p className="heading">todos</p>
             <Input onFormSubmit={updateTodos}  />
-            <TodosList todos={todos} onComplete={updateCompleted} onClear={clearTodo} />
+            <TodosList />
             <div className="api-error">{error}</div>
         </div>
     );
