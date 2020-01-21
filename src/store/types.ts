@@ -19,7 +19,8 @@ export const DELETE_TODO = 'DELETE_TODO';
 export interface DeleteTodoAction extends Action<typeof DELETE_TODO> {
   payload: {
     id: string
-  }
+  },
+  metadata?: boolean
 }
 
 export type TodoActions = AddTodoAction | ToggleTodoAction | DeleteTodoAction;

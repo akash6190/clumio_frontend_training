@@ -5,14 +5,24 @@ import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 
-import { createStore } from 'redux';
+import { createStore, Middleware, applyMiddleware } from 'redux';
 import appReducer from './store';
 import {Provider} from 'react-redux';
 
-export const store = createStore(appReducer);
-store.subscribe(() => {
-  console.log('state::', store.getState())
-})
+const loggerMiddleware: Middleware = store => next => action => {
+  console.group(action.type)
+  console.log('action:: ', action);
+  console.log('current state:: ', store.getState());
+  next(action)
+  console.log('new state:: ', store.getState());
+  console.groupEnd()
+}
+
+// const logMiddleware2 = store => next => action  => {
+//   console.log('logMiddleware2');
+// }
+
+export const store = createStore(appReducer, applyMiddleware(loggerMiddleware));
 ReactDOM.render(
   <Provider store={store}>
     <App />

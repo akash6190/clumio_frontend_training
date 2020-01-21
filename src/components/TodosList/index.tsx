@@ -14,7 +14,6 @@ const TodosList: React.FC<Props> = () => {
     const todos = useSelector((state: AppState) => state.todos)
     const dispatch = useDispatch();
 
-    console.log(todos);
     return todos ? (
         <ul className="list-container">
             {
